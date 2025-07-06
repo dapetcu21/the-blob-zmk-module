@@ -1,0 +1,5 @@
+config SHIELD_THE_BLOB_LEFT
+    def_bool $(shields_list_contains,the_blob_left)
+
+config SHIELD_THE_BLOB_RIGHT
+    def_bool $(shields_list_contains,the_blob_right)

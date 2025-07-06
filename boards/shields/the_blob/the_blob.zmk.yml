@@ -1,0 +1,13 @@
+file_format: "1"
+id: the_blob
+name: The Blob
+type: shield
+url: https://github.com/dapetcu21/the-blob
+requires: [pro_micro]
+exposes: []
+features:
+  - keys
+  - studio
+siblings:
+  - the_blob_left
+  - the_blob_right
