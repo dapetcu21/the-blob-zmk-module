@@ -20,13 +20,14 @@
                 ;
         };
 
-        bt_disc: bt_disc {
+        bt_clr: bt_clr {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings
                 = <&out OUT_BLE>
                 , <&macro_param_1to2>
-                , <&bt BT_DISC MACRO_PLACEHOLDER>
+                , <&bt BT_SEL MACRO_PLACEHOLDER>
+                , <&bt BT_CLR>
                 ;
         };
     };
@@ -54,39 +55,74 @@
             bindings = <&mo L_FN>, <&tog_on L_FN>, <&tog_on L_SYS>;
         };
 
-        bt_0: ble_binding_0 {
+        bt_0_clr: ble_binding_0_clr {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            bindings = <&bt_out 0>, <&bt_disc 0>;
+            bindings = <&bt_out 0>, <&bt_clr 0>;
+        };
+
+        bt_0: ble_binding_0 {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            bindings = <&bt_0_clr>, <&bt BT_DISC 0>;
+        };
+
+        bt_1_clr: ble_binding_1_clr {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            bindings = <&bt_out 1>, <&bt_clr 1>;
         };
 
         bt_1: ble_binding_1 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            bindings = <&bt_1_clr>, <&bt BT_DISC 1>;
+        };
+
+        bt_2_clr: ble_binding_2_clr {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            bindings = <&bt_out 1>, <&bt_disc 1>;
+            bindings = <&bt_out 2>, <&bt_clr 2>;
         };
 
         bt_2: ble_binding_2 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            bindings = <&bt_2_clr>, <&bt BT_DISC 2>;
+        };
+
+        bt_3_clr: ble_binding_3_clr {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            bindings = <&bt_out 2>, <&bt_disc 2>;
+            bindings = <&bt_out 3>, <&bt_clr 3>;
         };
 
         bt_3: ble_binding_3 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            bindings = <&bt_3_clr>, <&bt BT_DISC 3>;
+        };
+
+        bt_4_clr: ble_binding_4_clr {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
-            bindings = <&bt_out 3>, <&bt_disc 3>;
+            bindings = <&bt_out 4>, <&bt_clr 4>;
         };
 
         bt_4: ble_binding_4 {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-            bindings = <&bt_out 4>, <&bt_disc 4>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+            bindings = <&bt_4_clr>, <&bt BT_DISC 4>;
         };
     };
 
@@ -96,24 +132,24 @@
         base {
             display-name = "Base";
             bindings = <
-&kp GRAVE  &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                               &kp N6    &kp N7   &kp N8    &kp N9  &kp N0   &kp MINUS
-&kp TAB    &kp Q  &kp W  &kp E    &kp R    &kp T  &td_fn          &kp BACKSLASH &kp Y     &kp U    &kp I     &kp O   &kp P    &kp EQUAL
-&kp ESC    &kp A  &kp S  &kp D    &kp F    &kp G  &kp LBKT        &kp RBKT      &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
-&kp LSHIFT &kp Z  &kp X  &kp C    &kp V    &kp B                                &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
-                                  &kp LGUI &kp LCTRL &kp LSHIFT   &kp RSHIFT    &kp SPACE &td_fn
-                                           &kp LALT  &kp BSPC     &kp RETURN    &kp RALT
+&kp GRAVE  &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                                     &kp N6    &kp N7   &kp N8    &kp N9  &kp N0   &kp MINUS
+&kp TAB    &kp Q  &kp W  &kp E    &kp R    &kp T           &td_fn       &kp BACKSLASH &kp Y     &kp U    &kp I     &kp O   &kp P    &kp EQUAL
+&kp ESC    &kp A  &kp S  &kp D    &kp F    &kp G           &kp LBKT     &kp RBKT      &kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+&kp LSHIFT &kp Z  &kp X  &kp C    &kp V    &kp B                                      &kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
+                                  &kp LGUI &mt LCTRL SPACE &kp LSHIFT   &kp RSHIFT    &kp SPACE &td_fn
+                                           &kp LALT        &kp BSPC     &kp RALT      &kp RETURN
             >;
         };
 
         fn_layer {
             display-name = "Fn";
             bindings = <
-&trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5                                    &kp F6          &kp F7          &kp F8        &kp F9           &kp F10   &kp F11
-&trans    &kp INS   &trans    &trans    &trans    &trans    &trans         &trans           &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp UP    &kp F12
-&trans    &kp HOME  &kp PG_UP &kp PG_DN &kp END   &trans    &trans         &trans           &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT        &kp DOWN  &kp RIGHT
-&trans    &trans    &trans    &trans    &trans    &trans                                    &trans          &trans          &trans        &kp LEFT         &trans    &trans
-                                        &trans    &trans    &trans         &trans           &mkp MB1        &tog_off L_FN
-                                                  &trans    &kp DEL        &trans           &mkp MB2
+&trans    &kp F1    &kp F2         &kp F3    &kp F4            &kp F5                                                &kp F6          &kp F7          &kp F8        &kp F9           &kp F10   &kp F11
+&trans    &kp HOME  &kp PG_UP      &mkp MB1  &mkp MB2          &mmv MOVE_UP      &trans             &trans           &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &kp UP    &kp F12
+&trans    &kp END   &kp PG_DN      &kp INS   &mmv MOVE_LEFT    &mmv MOVE_DOWN    &mmv MOVE_RIGHT    &trans           &kp LEFT        &kp DOWN        &kp UP        &kp RIGHT        &kp DOWN  &kp RIGHT
+&trans    &trans    &trans         &trans    &trans            &trans                                                &trans          &mkp MB1        &mkp MB2      &kp LEFT         &trans    &trans
+                                             &trans            &trans            &trans             &trans           &trans          &tog_off L_FN
+                                                               &trans            &kp DEL            &trans           &trans
             >;
         };
 
